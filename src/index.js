@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'app/App';
+import { ThemeProvider } from 'styled-components';
+import themeConfiguration from 'components/Theme/Config';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider
+      theme={{
+        ...themeConfiguration,
+      }}
+    >
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
