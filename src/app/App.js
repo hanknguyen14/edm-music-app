@@ -1,17 +1,21 @@
 import React, { Suspense, lazy } from 'react';
-import { BaseCSS, Container } from 'styled-bootstrap-grid';
-import './App.css';
+import { BaseCSS } from 'styled-bootstrap-grid';
+import StarCover from 'components/StarCover';
+import getRandomBackgroundUrl from 'utils/getBackgroundUrl';
+import StyledApp from './StyledApp.js';
 
 const Header = lazy(() => import('components/Header'));
 
 function App() {
+  const backgroundUrl = getRandomBackgroundUrl();
   return (
-    <Container fluid>
+    <StyledApp fluid backgroundUrl={backgroundUrl}>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
+        <StarCover />
       </Suspense>
       <BaseCSS />
-    </Container>
+    </StyledApp>
   );
 }
 
