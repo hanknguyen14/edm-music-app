@@ -1,4 +1,4 @@
-import { Container, Row, Col, media } from 'styled-bootstrap-grid';
+import { Row, Col, media } from 'styled-bootstrap-grid';
 import Logo from 'components/Header/Logo';
 import React from 'react';
 import styled from 'styled-components';
@@ -15,7 +15,6 @@ const Header = () => {
           <MenuBar />
         </Col>
       </Wrapper>
-      <Container>Hello</Container>
     </>
   );
 };

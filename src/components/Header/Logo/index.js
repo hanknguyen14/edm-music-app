@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from 'static/logo.png';
 
 const Logo = () => {
   return (
     <a href="/">
-      <Img src={logo} alt="Doven" />
+      <Img src="logo.png" alt="Doven" />
     </a>
   );
 };

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from 'app/App';
 import { ThemeProvider } from 'styled-components';
 import themeConfiguration from 'components/Theme/Config';
-import './index.css';
+import GlobalStyle from './StyledIndex.js';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -13,6 +13,7 @@ ReactDOM.render(
         ...themeConfiguration,
       }}
     >
+      <GlobalStyle />
       <App />
     </ThemeProvider>
   </React.StrictMode>,
