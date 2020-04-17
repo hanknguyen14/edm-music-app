@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Container } from 'styled-bootstrap-grid';
+import styled from 'styled-components';
 
 const StyledApp = styled(Container)`
   height: 100%;

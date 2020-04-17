@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import starEffect from 'lib/star';
+import styled from 'styled-components';
 
 const StarCover = () => {
   const canvasRef = useRef();
@@ -7,7 +8,12 @@ const StarCover = () => {
     const canvas = canvasRef.current;
     starEffect(canvas);
   });
-  return <canvas ref={canvasRef} />;
+  return <StyledCanvas ref={canvasRef} />;
 };
+
+const StyledCanvas = styled.canvas`
+  position: absolute;
+  top: 0;
+`;
 
 export default StarCover;

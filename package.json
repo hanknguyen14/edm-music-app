@@ -7,6 +7,8 @@
     "node": "10.20.1"
   },
   "dependencies": {
+    "@styled-icons/material-sharp": "^10.0.0",
+    "@styled-icons/zondicons": "^10.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

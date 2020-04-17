@@ -1,10 +1,10 @@
+import { ThemeProvider } from 'styled-components';
+import App from 'app/App';
+import GlobalStyle from 'StyledIndex';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'app/App';
-import { ThemeProvider } from 'styled-components';
 import themeConfiguration from 'components/Theme/Config';
-import GlobalStyle from './StyledIndex.js';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from 'serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
