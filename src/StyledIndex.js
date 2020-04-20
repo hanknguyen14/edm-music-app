@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
     line-height: 2.1rem;
     overflow: hidden;
+    position: relative;
   }
 
   #root {
