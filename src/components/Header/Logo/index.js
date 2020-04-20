@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import Img from 'components/Theme/Img';
 
 const Logo = () => {
   return (
@@ -9,8 +9,4 @@ const Logo = () => {
   );
 };
 
-const Img = styled.img`
-  vertical-align: middle;
-  max-width: 100%;
-`;
 export default Logo;

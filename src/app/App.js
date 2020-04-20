@@ -1,10 +1,11 @@
-import React, { Suspense, lazy } from 'react';
 import { BaseCSS } from 'styled-bootstrap-grid';
-import StarCover from 'components/StarCover';
+import React, { Suspense, lazy } from 'react';
 import getRandomBackgroundUrl from 'utils/getBackgroundUrl';
-import StyledApp from './StyledApp.js';
+import StyledApp from 'app/StyledApp';
 
 const Header = lazy(() => import('components/Header'));
+const StarCover = lazy(() => import('components/StarCover'));
+const MusicPlayer = lazy(() => import('components/MusicPlayer'));
 
 function App() {
   const backgroundUrl = getRandomBackgroundUrl();
@@ -13,6 +14,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <StarCover />
+        <MusicPlayer />
       </Suspense>
       <BaseCSS />
     </StyledApp>
