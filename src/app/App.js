@@ -13,7 +13,7 @@ function App() {
     <StyledApp fluid backgroundUrl={backgroundUrl}>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
-        <StarCover />
+        {/* <StarCover /> */}
         <MusicPlayer />
       </Suspense>
       <BaseCSS />

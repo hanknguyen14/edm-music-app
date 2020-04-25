@@ -4,13 +4,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Shuffle = (props) => {
-  const { handleClick } = props;
-
-  return <StyledShuffle onClick={handleClick} title="Shuffle" />;
+  const { shuffle, handleClick } = props;
+  return (
+    <StyledShuffle shuffle={shuffle} onClick={handleClick} title="Shuffle" />
+  );
 };
 
 const StyledShuffle = styled(ShuffleIcon)`
   ${ControlIcon}
+  color: ${(props) =>
+    props.shuffle
+      ? props.theme.colors.primaryRed
+      : props.theme.colors.primaryWhite};
   width: 1rem;
 `;
 

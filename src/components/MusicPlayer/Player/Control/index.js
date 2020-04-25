@@ -9,23 +9,31 @@ import Shuffle from 'components/MusicPlayer/Player/Control/Shuffle';
 import TogglePlaylist from 'components/MusicPlayer/Player/Control/TogglePlaylist';
 
 const Control = (props) => {
-  const { playing, setPlaying } = props;
-  const { repeat, setRepeat } = props;
+  const {
+    playing,
+    repeat,
+    shuffle,
+    setPlaying,
+    setRepeat,
+    setBackward,
+    setForward,
+    setShuffle,
+  } = props;
 
   return (
     <>
-      <Backward handleClick={() => {}} />
+      <Backward handleClick={setBackward} />
       {playing ? (
         <Pause handleClick={() => setPlaying(false)} />
       ) : (
         <Play handleClick={() => setPlaying(true)} />
       )}
-      <Forward handleClick={() => {}} />
-      <Shuffle handleClick={() => {}} />
-      {repeat ? (
-        <Repeat handleClick={() => setRepeat(true)} />
+      <Forward handleClick={setForward} />
+      <Shuffle shuffle={shuffle} handleClick={setShuffle} />
+      {repeat === 1 ? (
+        <RepeatOne handleClick={() => setRepeat(1)} />
       ) : (
-        <RepeatOne handleClick={() => setRepeat(false)} />
+        <Repeat handleClick={() => setRepeat(2)} />
       )}
       <TogglePlaylist handleClick={() => setPlaying(false)} />
     </>

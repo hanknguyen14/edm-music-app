@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import StyledImg from 'components/Theme/Img';
 
 const SongDetail = (props) => {
-  const {
-    thumbnail = 'no-cover.png',
-    title = 'Despacito',
-    artist = 'Luis Fonci',
-  } = props;
+  const { thumbnail, title, artist } = props;
 
   return (
     <>

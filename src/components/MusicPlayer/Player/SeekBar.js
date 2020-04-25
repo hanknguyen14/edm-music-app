@@ -71,7 +71,7 @@ const BarTime = styled.span`
 `;
 const BarProgress = styled.div`
   height: 0.1rem;
-  cursor: col-resize;
+  cursor: pointer;
   width: 60%;
   background: ${(props) => props.theme.colors.primaryWhite};
   vertical-align: middle;
