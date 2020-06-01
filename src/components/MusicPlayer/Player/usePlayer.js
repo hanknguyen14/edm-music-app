@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-// import getRandomArrayIndex from 'utils/helpers';
 
 const usePlayer = (songs) => {
+  const totalSongs = songs.length;
   const lastSongIndex = songs.length - 1;
   const audioRef = useRef();
-  const [audioIndex, setAudioIndex] = useState(0);
+  const [songIndex, setAudioIndex] = useState(0);
   const [duration, setDuration] = useState();
   const [currentTime, setCurrentTime] = useState();
   const [playing, setPlaying] = useState(false);
@@ -38,30 +38,29 @@ const usePlayer = (songs) => {
       audio.removeEventListener('loadeddata', setAudioData);
       audio.removeEventListener('timeupdate', setAudioTime);
     };
-  }, [playing, clickedTime, currentTime]);
+  }, [duration, playing, clickedTime, currentTime]);
 
-  const setBackward = () => audioIndex && setAudioIndex(audioIndex - 1);
+  const setBackward = () => songIndex && setAudioIndex(songIndex - 1);
   const setForward = () =>
-    audioIndex !== lastSongIndex && setAudioIndex(audioIndex + 1);
+    songIndex !== lastSongIndex && setAudioIndex(songIndex + 1);
   const onEnded = () => {
+    // Repeat One
     if (repeat === 1) {
-      return setAudioIndex(audioIndex);
+      return setAudioIndex(songIndex);
     }
+    // Repeat all
     if (repeat === 2) {
-      return setAudioIndex(audioIndex + 1);
+      const nextSongIndex = (songIndex + 1) % totalSongs;
+      return setAudioIndex(nextSongIndex);
     }
-    // if (shuffle) {
-    //   const shuffleIndex = getRandomArrayIndex(songs.length);
-    //   setAudioIndex(shuffleIndex);
-    // }
-    return audioIndex !== lastSongIndex
-      ? setAudioIndex(audioIndex + 1)
+    return songIndex !== lastSongIndex
+      ? setAudioIndex(songIndex + 1)
       : setPlaying(false);
   };
 
   return {
     audioRef,
-    audioIndex,
+    songIndex,
     duration,
     currentTime,
     playing,
