@@ -1,3 +1,5 @@
+import getRandomArrayIndex from 'utils/helpers';
+
 const BACKGROUND_FOLDER = 'backgrounds';
 const BACKGROUND_URLS = [
   'background1.jpg',
@@ -10,7 +12,7 @@ const BACKGROUND_URLS = [
   'background8.jpeg',
 ];
 const getRandomBackgroundUrl = () => {
-  const backgroundIndex = Math.floor(Math.random() * BACKGROUND_URLS.length);
+  const backgroundIndex = getRandomArrayIndex(BACKGROUND_URLS.length);
   return `${BACKGROUND_FOLDER}/${BACKGROUND_URLS[backgroundIndex]}`;
 };
 export default getRandomBackgroundUrl;
