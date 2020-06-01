@@ -6,28 +6,38 @@ import {
   StyledContainer,
 } from 'components/MusicPlayer/Player/Styled';
 import Control from 'components/MusicPlayer/Player/Control';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SeekBar from 'components/MusicPlayer/Player/SeekBar';
 import SongDetail from 'components/MusicPlayer/Player/SongDetail';
 import usePlayer from 'components/MusicPlayer/Player/usePlayer';
 import Audio from 'components/MusicPlayer/Player/Audio';
-import songs from 'utils/songs';
+import originalSongs from 'utils/songs';
+import { shuffleArray } from 'utils/helpers';
 
 const Player = () => {
   const {
     audioRef,
-    audioIndex,
+    songIndex,
     duration,
     currentTime,
     playing,
     shuffle,
+    repeat,
     setPlaying,
     setClickedTime,
     setShuffle,
     setBackward,
     setForward,
     onEnded,
-  } = usePlayer(songs);
+    setRepeat,
+  } = usePlayer(originalSongs);
+
+  const [songs, setSongs] = useState(originalSongs);
+
+  useEffect(() => {
+    const shuffleSongs = shuffleArray(originalSongs);
+    shuffle ? setSongs(shuffleSongs) : setSongs(originalSongs);
+  }, [shuffle]);
 
   return (
     <StyledContainer>
@@ -53,17 +63,13 @@ const Player = () => {
         </SeekBarCol>
         <SongDetailCol>
           <SongDetail
-            thumbnail={songs[audioIndex].thumbnail}
-            title={songs[audioIndex].title}
-            artist={songs[audioIndex].artist}
+            thumbnail={songs[songIndex].thumbnail}
+            title={songs[songIndex].title}
+            artist={songs[songIndex].artist}
           />
         </SongDetailCol>
       </Row>
-      <Audio
-        audioRef={audioRef}
-        src={songs[audioIndex].src}
-        onEnded={onEnded}
-      />
+      <Audio audioRef={audioRef} src={songs[songIndex].src} onEnded={onEnded} />
     </StyledContainer>
   );
 };

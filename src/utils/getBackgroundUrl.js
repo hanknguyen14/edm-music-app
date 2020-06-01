@@ -1,4 +1,4 @@
-import getRandomArrayIndex from 'utils/helpers';
+import { getRandomArrayIndex } from 'utils/helpers';
 
 const BACKGROUND_FOLDER = 'backgrounds';
 const BACKGROUND_URLS = [
