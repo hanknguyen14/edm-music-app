@@ -12,9 +12,11 @@ import SongDetail from 'components/MusicPlayer/Player/SongDetail';
 import usePlayer from 'components/MusicPlayer/Player/usePlayer';
 import Audio from 'components/MusicPlayer/Player/Audio';
 import originalSongs from 'utils/songs';
+import TogglePlayer from 'components/MusicPlayer/Player/Control/TogglePlayer';
 import { shuffleArray } from 'utils/helpers';
 
 const Player = () => {
+  const [show, setShow] = useState(true);
   const {
     audioRef,
     songIndex,
@@ -41,35 +43,44 @@ const Player = () => {
 
   return (
     <StyledContainer>
-      <Row alignItems="center">
-        <ControlCol col={5} sm={6} md={4} lg={3}>
-          <Control
-            playing={playing}
-            setPlaying={setPlaying}
-            setBackward={setBackward}
-            setForward={setForward}
-            setShuffle={() => setShuffle(!shuffle)}
-            shuffle={shuffle}
-            repeat={repeat}
-            setRepeat={setRepeat}
+      <TogglePlayer show={show} handleClick={() => setShow(!show)} />
+      {show && (
+        <>
+          <Row alignItems="center">
+            <ControlCol col={5} sm={6} md={4} lg={3}>
+              <Control
+                playing={playing}
+                setPlaying={setPlaying}
+                setBackward={setBackward}
+                setForward={setForward}
+                setShuffle={() => setShuffle(!shuffle)}
+                shuffle={shuffle}
+                repeat={repeat}
+                setRepeat={setRepeat}
+              />
+            </ControlCol>
+            <SeekBarCol sm={2} md={5} lg={6}>
+              <SeekBar
+                duration={duration}
+                currentTime={currentTime}
+                onTimeUpdate={(time) => setClickedTime(time)}
+              />
+            </SeekBarCol>
+            <SongDetailCol>
+              <SongDetail
+                thumbnail={songs[songIndex].thumbnail}
+                title={songs[songIndex].title}
+                artist={songs[songIndex].artist}
+              />
+            </SongDetailCol>
+          </Row>
+          <Audio
+            audioRef={audioRef}
+            src={songs[songIndex].src}
+            onEnded={onEnded}
           />
-        </ControlCol>
-        <SeekBarCol sm={2} md={5} lg={6}>
-          <SeekBar
-            duration={duration}
-            currentTime={currentTime}
-            onTimeUpdate={(time) => setClickedTime(time)}
-          />
-        </SeekBarCol>
-        <SongDetailCol>
-          <SongDetail
-            thumbnail={songs[songIndex].thumbnail}
-            title={songs[songIndex].title}
-            artist={songs[songIndex].artist}
-          />
-        </SongDetailCol>
-      </Row>
-      <Audio audioRef={audioRef} src={songs[songIndex].src} onEnded={onEnded} />
+        </>
+      )}
     </StyledContainer>
   );
 };
